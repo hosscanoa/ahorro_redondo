@@ -27,8 +27,9 @@ Route::get('/', function () {
 */
 
 Route::resource('settings', 'SettingsController');
+Route::post('/saveAccounts', 'SettingsController@saveAccounts');
+Route::post('/desactivateAccount', 'SettingsController@desactivateAccount');
 Route::name('pago')->get('/pago', 'PagoController@index');
 Route::get('/banks/', 'SettingsController@getBanks');
 Route::name('inicio')->get('/inicio', 'LoginController@index');
 Route::name('vista')->get('/vista', 'SettingsController@vista');
-
