@@ -32,8 +32,6 @@ class SettingsController extends Controller
       $creditcard = $request->input('creditcard');
       $numberpassword = $request->input('numberpassword');
 
-      dd($request);
-
       $client = new GuzzleHttp\Client();
 
       $res = $client->request('GET', "https://ahorra-redondo.herokuapp.com/getAccounts");

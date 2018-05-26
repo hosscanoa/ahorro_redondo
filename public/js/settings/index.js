@@ -31,7 +31,7 @@ $(function()
     };
 
     $.ajax({
-        url: 'settings',
+        url: '/settings',
         type: 'POST',
         dataType: 'JSON',
         data: dto,

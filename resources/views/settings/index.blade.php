@@ -1,5 +1,46 @@
 @extends('../base')
 @section('content')
+    <style>
+        .pago {
+  padding: 40px 0 40px 0;
+}
+
+.form_pago {
+  background-color: white;
+  padding: 15px 30px;
+}
+
+.form_pago .selectpicker {
+  margin-bottom: 5px
+
+}
+
+.form_pago .selectpicker .tipo_pago {
+  width: 100%;
+}
+
+.form_pago .selectpicker .proveedor {
+  width: 100%;
+}
+#ex1Slider .slider-selection {
+  background: #BABABA;
+}
+           .dot-green {
+             height: 25px;
+             width: 25px;
+             backgroundcolor: #5cb85c;
+             borderradius: 50%;
+             display: inlineblock;
+           }
+           .dot-red {
+             height: 25px;
+             width: 25px;
+             backgroundcolor: #d9534f;
+             borderradius: 50%;
+             display: inlineblock;
+           }
+         
+    </style>
 
 <h2>Seleccionar Proveedor</h1>
 <div class="row">
@@ -59,7 +100,6 @@
     </div>
 
 </div>
-</div>
 
 <div class="modal fade" tabindex="-1" role="dialog" id="deseos">
     <div class="modal-dialog" role="document">
@@ -93,9 +133,7 @@
             </div>
         </div>
     </div>
-    @endsection
-    @section('scripts')
-    <script type="text/javascript" src="{{ URL::asset('js/settings/index.js') }}"></script>
+</div>
 
 <div class="modal fade" tabindex="-1" role="dialog" id="modal-new">
     <div class="modal-dialog" role="document">
@@ -245,45 +283,4 @@
             $('.alert-status').bootstrapSwitch('state', true);
         </script>
     @endsection
-    <style>
-        .pago {
-	padding: 40px 0 40px 0;
-}
-
-.form_pago {
-	background-color: white;
-	padding: 15px 30px;
-}
-
-.form_pago .selectpicker {
-	margin-bottom: 5px
-
-}
-
-.form_pago .selectpicker .tipo_pago {
-	width: 100%;
-}
-
-.form_pago .selectpicker .proveedor {
-	width: 100%;
-}
-#ex1Slider .slider-selection {
-	background: #BABABA;
-}
-           .dot-green {
-             height: 25px;
-             width: 25px;
-             backgroundcolor: #5cb85c;
-             borderradius: 50%;
-             display: inlineblock;
-           }
-           .dot-red {
-             height: 25px;
-             width: 25px;
-             backgroundcolor: #d9534f;
-             borderradius: 50%;
-             display: inlineblock;
-           }
-         
-    </style>
 
