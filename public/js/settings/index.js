@@ -30,6 +30,10 @@ $(function()
       numberpassword : numberpassword
     };
 
+    $('.frm-connect-new-card').hide();
+          $('.frm-select-accounts').show();
+
+    return;
     $.ajax({
         url: '/settings',
         type: 'POST',
@@ -108,7 +112,7 @@ $(function()
 
     var dto =
     {
-      bank : $BANK_SELECTED,
+      bank : '1',
       accounts : accounts
     };
 

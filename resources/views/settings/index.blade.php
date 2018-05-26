@@ -172,56 +172,7 @@
                       <th>Seleccionar</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
-                      <td class="col-md-3">00-0000000</td>
-                      <td class="col-md-6">BCP</td>
-                      <td class="col-md-3">S/. 1000</td>
-                      <td>
-                        <input type="checkbox" class="selected-accounts">
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-3">00-0000000</td>
-                      <td class="col-md-6">BCP</td>
-                      <td class="col-md-3">S/. 1000</td>
-                      <td>
-                        <input type="checkbox" class="selected-accounts">
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-3">00-0000000</td>
-                      <td class="col-md-6">BCP</td>
-                      <td class="col-md-3">S/. 1000</td>
-                      <td>
-                        <input type="checkbox" class="selected-accounts">
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-3">00-0000000</td>
-                      <td class="col-md-6">BCP</td>
-                      <td class="col-md-3">S/. 1000</td>
-                      <td>
-                        <input type="checkbox" class="selected-accounts">
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-3">00-0000000</td>
-                      <td class="col-md-6">BCP</td>
-                      <td class="col-md-3">S/. 1000</td>
-                      <td>
-                        <input type="checkbox" class="selected-accounts">
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-3">00-0000000</td>
-                      <td class="col-md-6">BCP</td>
-                      <td class="col-md-3">S/. 1000</td>
-                      <td>
-                        <input type="checkbox" class="selected-accounts">
-                      </td>
-                    </tr>
-                  </tbody>
+                  <tbody><tr><td>88888888888888</td><td>BCP</td><td>cuenta Ahorro Soles</td><td><input type="checkbox" class="selected-accounts" data-account="88888888888888"></td></tr><tr><td>99999999999999</td><td>BCP</td><td>Cuenta corriente Soles</td><td><input type="checkbox" class="selected-accounts" data-account="99999999999999"></td></tr></tbody>
                 </table>
               </div>
             </div>
