@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::name('/', function () {
+    return view('inicio');
 });
+
+Route::name('pago')->get('/pago', PagoController@index);
