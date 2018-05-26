@@ -124,25 +124,20 @@ class PagoController extends Controller
         $codigoPago = $request->get('codigoPago');
 
 
-
-
-
     }
 
     public function pago(Request $request)
     {
-        $servicioId= $request->get("servicioId");
+        $servicioId = $request->get("servicioId");
         $codigoPago = $request->get("codigoPago");
         $monto = $request->get("monto");
         $tipoId = $request->get("tipoId");
         $cuentaId = $request->get("cuentaId");
 
-        $tipoRedondeo = $request->get("tipoRedondeo");
-
         $pago = new Pago();
         $pago->servicio()->associate(Servicio::find($servicioId));
-        $pago->codigoPago= $codigoPago;
-        $pago->monto= $monto;
+        $pago->codigoPago = $codigoPago;
+        $pago->monto = $monto;
         $tipo = Tipo::find($tipoId);
         $pago->tipo()->associate($tipo);
         $pago->fecha = date('Y-m-d H:m:s');
@@ -150,11 +145,16 @@ class PagoController extends Controller
 
         $pago->save();
 
-        if($tipoRedondeo!=11)
-        {
+        if ($tipo != 11) {
             $ahorro = new Ahorro();
             $ahorro->pago()->associate(Pago::find($pago));
-            $ahorro->monto=$tipo->valor;
+
+            $r = round($monto, $tipo->valor);
+            if ($r <= $monto) {
+                $r += $tipo->incremento;
+            }
+            $ahorro->monto = $r - $monto;
+            $ahorro->save();
         }
     }
 }
