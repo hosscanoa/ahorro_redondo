@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ahorro extends Model
 {
-    protected $table = "cuentas";
+    protected $table = "ahorro";
     public $timestamps = false;
 
     public function pago()
