@@ -1,5 +1,7 @@
 @extends('../base')
 @section('content')
+<style type="text/css" href="http://seiyria.com/bootstrap-slider/dependencies/css/highlightjs-github-theme.css"></style>
+<script type="text/javascript" href="http://seiyria.com/bootstrap-slider/js/bootstrap-slider.js"></script>
 <div class="form_pago container">
     <h2>Pagos</h2>
 <div class="form-group">
@@ -57,4 +59,16 @@
     float:right;
     margin-top: 5px;
 }
+#ex1Slider .slider-selection {
+    background: #BABABA;
+}
 </style>
+@section('scripts')
+<script type="text/javascript">
+    $('#ex1').slider({
+    formatter: function(value) {
+        return 'Current value: ' + value;
+    }
+});
+</script>
+@endsection
