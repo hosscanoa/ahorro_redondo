@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Deseo extends Model
 {
-    protected $table = "Deseos";
+    protected $table = "ceseos";
+    public $timestamps = false;
 
     public function estado()
     {

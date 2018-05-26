@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Servicio extends Model
 {
-    protected $table = "Servicios";
+    protected $table = "servicios";
+    public $timestamps = false;
 
     public function tipo()
     {

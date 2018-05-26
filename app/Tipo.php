@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tipo extends Model
 {
-    protected $table = "Tipos";
+    protected $table = "tipos";
+    public $timestamps = false;
 }
