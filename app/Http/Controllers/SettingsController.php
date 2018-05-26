@@ -27,6 +27,11 @@ class SettingsController extends BaseController
     {
         return \View::make('settings.create');
     }
+    
+    public function vista()
+    {
+        return \View::make('settings.pago');
+    }
 
     public function getBanks()
     {
