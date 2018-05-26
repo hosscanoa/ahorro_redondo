@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Ahorro;
+use App\Banco;
+use App\Pago;
+use App\Servicio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PagoController extends Controller
 {
@@ -13,7 +18,10 @@ class PagoController extends Controller
      */
     public function index()
     {
-        //
+        $data['bancos'] = Banco::all();
+        $data['redondeos'] = Tabla::where('descripcion', 'pagos')->first()->tipos()->orderBy('valor', 'asc')->get();
+
+        return view('pago', ['data' => $data]);
     }
 
     /**
@@ -29,7 +37,7 @@ class PagoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -40,7 +48,7 @@ class PagoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -51,7 +59,7 @@ class PagoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -62,8 +70,8 @@ class PagoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -74,7 +82,7 @@ class PagoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -83,41 +91,70 @@ class PagoController extends Controller
     }
 
 
-    public function traerCategoriasPago(Request $request)
+    public function tipoServicio(Request $request)
     {
+        $bancoId = $request->get('bancoId');
+        $tipos = DB::select("select distinct t.id, t.descripcion from 
+                                bancos b join bancos_servicios bs on b.id=bs.banco_id
+                                join servicios s on bs.servicio_id=s.id
+                                join tipos t on s.tipo_id=t.id
+                                where b.id=" . $bancoId . "
+                                order by descripcion;");
 
-
+        return $tipos;
     }
 
 
-    public function traerEmpresasPorCategoriasPago(Request $request)
+    public function traerEmpresas(Request $request)
     {
+        $bancoId = $request->get('bancoId');
         $categoriaId = $request->get('categoriaId');
 
-
+        $empresas = DB::select("select s.id, s.descripcion from 
+                    bancos b join bancos_servicios bs on b.id=bs.banco_id
+                    join servicios s on bs.servicio_id=s.id
+                    join tipos t on s.tipo_id=t.id
+                    where b.id=" . $bancoId . " and t.id=" . $categoriaId . "order by descripcion;");
+        return $empresas;
     }
 
     public function traerMontoAPagar(Request $request)
     {
         $empresaId = $request->get('empresaId');
-        $codigo = $request->get('codigo');
+        $codigoPago = $request->get('codigoPago');
+
+
+
 
 
     }
 
     public function pago(Request $request)
     {
-        $cuentaId = $request->get('cuentaId');
-        $empresaId = $request->get('empresaId');
-        $codigo = $request->get('codigo');
-        $monto = $request->get('monto');
-        $tipoRedondeo = $request->get('tipoRedondeo');
+        $servicioId= $request->get("servicioId");
+        $codigoPago = $request->get("codigoPago");
+        $monto = $request->get("monto");
+        $tipoId = $request->get("tipoId");
+        $cuentaId = $request->get("cuentaId");
 
+        $tipoRedondeo = $request->get("tipoRedondeo");
 
-        //pago a empresa
+        $pago = new Pago();
+        $pago->servicio()->associate(Servicio::find($servicioId));
+        $pago->codigoPago= $codigoPago;
+        $pago->monto= $monto;
+        $tipo = Tipo::find($tipoId);
+        $pago->tipo()->associate($tipo);
+        $pago->fecha = date('Y-m-d H:m:s');
+        $pago->cuenta()->associate(Tipo::find($cuentaId));
 
-        //deposito de redondeo
+        $pago->save();
 
-
+        if($tipoRedondeo!=11)
+        {
+            $ahorro = new Ahorro();
+            $ahorro->pago()->associate(Pago::find($pago));
+            $ahorro->monto=$tipo->valor;
+        }
     }
 }
