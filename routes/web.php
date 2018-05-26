@@ -27,4 +27,5 @@ Route::get('/', function () {
 */
 
 Route::resource('settings', 'SettingsController');
-Route::name('pago')->get('/pago', PagoController@index);
+Route::name('pago')->get('/pago', 'PagoController@index');
+Route::get('/banks/', 'SettingsController@getBanks');

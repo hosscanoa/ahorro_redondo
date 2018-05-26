@@ -14,7 +14,7 @@
         <h1>Seleccionar Proveedor</h1>
         <div class="row">
           <div class="col-md-12">
-            <a data-toggle="modal" data-target="#modal-new" style="cursor: pointer;">Agregar nuevo</a>
+            <a data-toggle="modal" data-target="#modal-new" style="cursor: pointer;" id="add-new-bank">Agregar nuevo</a>
           </div>
           <div class="col-md-6 col-md-offset-3">
             <table class="table table-striped">
@@ -27,16 +27,18 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th class="text-center" scope="row">1</th>
-                  <td class="col-md-6">5264-018154</td>
-                  <td class="col-md-3"><span class="label label-primary">BCP</span></td>
-                  <td>
-                    <a href="">
-                      <i class="glyphicon glyphicon-pencil"></i>
-                    </a>
-                  </td>
-                </tr>
+                @foreach (($accounts) as $account)
+                  <tr>
+                    <th class="text-center" scope="row">1</th>
+                    <td class="col-md-6">5264-018154</td>
+                    <td class="col-md-3"><span class="label label-primary">BCP</span></td>
+                    <td>
+                      <a href="">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                      </a>
+                    </td>
+                  </tr>
+                @endforeach
                 <tr>
                   <th class="text-center" scope="row">2</th>
                   <td class="col-md-6">5264-018154</td>
@@ -64,7 +66,15 @@
             <form>
               <div class="form-group">
                 <label for="exampleInputEmail1">Tipo de redondeo</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                   <select class="form-control" id="list-redondeo">
+                    @foreach (($rounds) as $round)
+                      @if ($settingUser->selectedRound == $round)
+                        <option selected>{{ $round }}</option>
+                      @else
+                        <option>{{ $round }}</option>
+                      @endif
+                    @endforeach
+                  </select>
               </div>
             </form>
           </div>
